@@ -9,6 +9,15 @@ resource "aws_instance" "jenkins_instance" {
   ami = var.ami_id
 }
 
+resource "aws_s3_bucket" "example" {
+  bucket = var.bucket_name
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+
 variable "key_name" { 
 	type = string
 	description = "Provide Key pair name"
@@ -17,4 +26,9 @@ variable "key_name" {
 variable "ami_id" { 
 	type = string
 	description = "Provide AMI ID Name"
+}
+
+variable "bucket_name" { 
+	type = string
+	description = "Provide Bucket Name"
 }
